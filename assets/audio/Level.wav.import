@@ -6,7 +6,8 @@ path="res://.import/Level.wav-1221572d40e40f0b3f2e23c74f57c05f.sample"
 
 [deps]
 
-source_md5="b2d52dd854e241b2adb6ae45e5b40460"
+source_file="res://assets/audio/Level.wav"
+dest_files=[ "res://.import/Level.wav-1221572d40e40f0b3f2e23c74f57c05f.sample" ]
 
 [params]
 
@@ -16,5 +17,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0
