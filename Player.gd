@@ -43,7 +43,6 @@ func die():
 	$AnimatedSprite.animation = "hurt"
 	set_process(false)
 
-
 func _on_Player_area_entered(area):
 	if area.is_in_group("coins"):
 		area.pickup()
