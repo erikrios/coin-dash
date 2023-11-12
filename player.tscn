@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://b67jodx58duu6"]
+[gd_scene load_steps=16 format=3 uid="uid://b67jodx58duu6"]
 
+[ext_resource type="Script" path="res://player.gd" id="1_7yeo0"]
 [ext_resource type="Texture2D" uid="uid://b8bfjaeradpqa" path="res://assets/player/hurt/player-hurt-1.png" id="1_sho7y"]
 [ext_resource type="Texture2D" uid="uid://dvvhc4nbc6675" path="res://assets/player/hurt/player-hurt-2.png" id="2_ltjdr"]
 [ext_resource type="Texture2D" uid="uid://cq5rearej16x8" path="res://assets/player/idle/player-idle-1.png" id="3_mo8jy"]
@@ -71,6 +72,7 @@ animations = [{
 size = Vector2(37, 45)
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_7yeo0")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
