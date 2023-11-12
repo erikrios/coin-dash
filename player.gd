@@ -13,6 +13,14 @@ func _process(delta: float) -> void:
 	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	position += velocity * speed * delta
 	
+	if velocity.length() > 0:
+		$AnimatedSprite2D.animation = "run"
+	else:
+		$AnimatedSprite2D.animation = "idle"
+		
+	if velocity.x != 0:
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+	
 	position.x = clamp(position.x, 0, screensize.x)
 	position.y = clamp(position.y, 0, screensize.y)
 
