@@ -8,6 +8,7 @@ var screensize := Vector2(480, 720)
 func _ready() -> void:
 	pass # Replace with function body.
 	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -24,3 +25,11 @@ func _process(delta: float) -> void:
 	position.x = clamp(position.x, 0, screensize.x)
 	position.y = clamp(position.y, 0, screensize.y)
 
+func start() -> void:
+	set_process(true)
+	position = screensize / 2
+	$AnimatedSprite2D.animation = "idle"
+
+func die() -> void:
+	$AnimatedSprite2D.animation = "hurt"
+	set_process(false)
