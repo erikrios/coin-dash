@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://br7a6d2onkof6"]
+
+[ext_resource type="Texture2D" uid="uid://b7rd7mqrp4pnu" path="res://assets/grass.png" id="1_docgl"]
+[ext_resource type="PackedScene" uid="uid://b67jodx58duu6" path="res://player.tscn" id="2_jaacb"]
+
+[node name="Main" type="Node"]
+metadata/_edit_group_ = true
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_docgl")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_jaacb")]
+
+[node name="GameTimer" type="Timer" parent="."]
