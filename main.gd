@@ -38,6 +38,8 @@ func new_game():
 	$Player.show()
 	$GameTimer.start()
 	spawn_coins()
+	$HUD.update_score(score)
+	$HUD.update_timer(time_left)
 	
 func spawn_coins():
 	for i in level + 4:
@@ -45,3 +47,28 @@ func spawn_coins():
 		add_child(c)
 		c.screensize = screensize
 		c.position = Vector2(randf_range(0, screensize.x), randf_range(0, screensize.y))
+
+func game_over() -> void:
+	playing = false
+	$GameTimer.stop()
+	get_tree().call_group("coins", "queue_free()")
+	$HUD.show_game_over()
+	$Player.die()
+
+func _on_game_timer_timeout() -> void:
+	time_left -= 1
+	$HUD.update_timer(time_left)
+	if time_left <= 0:
+		game_over()
+
+
+func _on_player_hurt() -> void:
+	game_over()
+
+func _on_player_pickup() -> void:
+	score += 1
+	$HUD.update_score(score)
+
+
+func _on_hud_start_game() -> void:
+	new_game()
