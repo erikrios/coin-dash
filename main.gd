@@ -2,6 +2,7 @@
 extends Node
 
 @export var coin_scene: PackedScene
+@export var powerup_scene: PackedScene
 @export var playtime := 30
 
 var level := 1
@@ -20,12 +21,17 @@ func _process(_delta: float) -> void:
 		level += 1
 		time_left += 5
 		spawn_coins()
+		$PowerupTimer.wait_time = randi_range(0, 5)
+		$PowerupTimer.start()
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warning: PackedStringArray = []
 	
 	if not coin_scene:
 		warning.append("Coin Scene is not initialized. Please set a valid PackedScene.")
+		
+	if not powerup_scene:
+		warning.append("Powerup Scene is not initialized. Please set a valid PackedScene.")
 	
 	return warning
 	
@@ -67,11 +73,22 @@ func _on_game_timer_timeout() -> void:
 func _on_player_hurt() -> void:
 	game_over()
 
-func _on_player_pickup() -> void:
-	score += 1
-	$HUD.update_score(score)
-	$CoinSound.play()
-
+func _on_player_pickup(type: String) -> void:
+	match type:
+		"coin":
+			score += 1
+			$HUD.update_score(score)
+			$CoinSound.play()
+		"powerup":
+			time_left += 5
+			$HUD.update_timer(time_left)
+			$PowerupSound.play()
 
 func _on_hud_start_game() -> void:
 	new_game()
+
+func _on_powerup_timer_timeout() -> void:
+	var p := powerup_scene.instantiate()
+	add_child(p)
+	p.screensize = screensize
+	p.position = Vector2(randf_range(0, screensize.x), randf_range(0, screensize.y))
